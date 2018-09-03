@@ -11,10 +11,7 @@ blocks:
       jobs:
       - name: First Job
         commands:
-          - checkout
-          - ls -l
           - echo $APP_ENV
-          - echo Done
         env_vars:
           - name: APP_ENV
             value: This is APP_ENV
@@ -31,7 +28,6 @@ blocks:
       jobs:
       - name: Local env_vars
         commands:
-          - checkout
           - echo $VAR_1
           - echo $VAR_2
           - echo $APP_ENV
@@ -42,7 +38,6 @@ blocks:
             value: This is VAR_2
       - name: Second job - no local env_vars
         commands:
-          - checkout
           - echo $VAR_1
           - echo $APP_ENV
 
