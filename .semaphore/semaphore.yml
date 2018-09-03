@@ -33,7 +33,9 @@ blocks:
       - name: Local env_vars
         commands:
           - checkout
-          - echo "make smoke"
+          - echo $VAR_1
+          - echo $VAR_2
+          - echo $APP_ENV
         env_vars:
           - name: VAR_1
             value: This is VAR_1
