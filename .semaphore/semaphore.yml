@@ -9,7 +9,7 @@ blocks:
   - name: Using Local Environment variables only
     task:
       jobs:
-      - name: First Job
+      - name: Job that uses local env_vars
         commands:
           - echo $APP_ENV
         env_vars:
