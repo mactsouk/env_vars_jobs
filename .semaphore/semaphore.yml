@@ -12,10 +12,9 @@ blocks:
       - name: First Job
         commands:
           - checkout
-          - ls -1
+          - ls -l
           - echo $APP_ENV
-          - echo "Docker build..."
-          - echo "done"
+          - echo Done
         env_vars:
           - name: APP_ENV
             value: This is APP_ENV
@@ -41,4 +40,9 @@ blocks:
             value: This is VAR_1
           - name: VAR_2
             value: This is VAR_2
+      - name: Second job - no local env_vars
+        commands:
+          - checkout
+          - echo $VAR_1
+          - echo $APP_ENV
 
