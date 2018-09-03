@@ -18,7 +18,7 @@ blocks:
           - name: VAR_2
             value: This is VAR_2 from First Job
 
-  - name: Lots of environment variables
+  - name: Both local end global env_vars
     task:
       env_vars:
         - name: APP_ENV
@@ -26,7 +26,7 @@ blocks:
         - name: VAR_1
           value: VAR_1 from outer env_vars
       jobs:
-      - name: Local env_vars
+      - name: Using both global and local env_vars
         commands:
           - echo $VAR_1
           - echo $VAR_2
