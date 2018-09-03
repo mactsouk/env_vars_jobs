@@ -6,25 +6,37 @@ agent:
     os_image: ubuntu1804
 
 blocks:
-  - name: "Build"
+  - name: Using Local Environment variables only
     task:
-      env_vars:
-        - name: APP_ENV
-          value: prod
       jobs:
-      - name: Docker build
+      - name: First Job
         commands:
           - checkout
           - ls -1
           - echo $APP_ENV
           - echo "Docker build..."
           - echo "done"
+        env_vars:
+          - name: APP_ENV
+            value: This is APP_ENV
+          - name: VAR_2
+            value: This is VAR_2 from First Job
 
-  - name: "Smoke tests"
+  - name: Lots of environment variables
     task:
+      env_vars:
+        - name: APP_ENV
+          value: prod
+        - name: VAR_1
+          value: VAR_1 from outer env_vars
       jobs:
-      - name: Smoke
+      - name: Local env_vars
         commands:
           - checkout
           - echo "make smoke"
+        env_vars:
+          - name: VAR_1
+            value: This is VAR_1
+          - name: VAR_2
+            value: This is VAR_2
 
