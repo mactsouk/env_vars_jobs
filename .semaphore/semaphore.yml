@@ -1,20 +1,45 @@
 version: v1.0
-name: Using files in secrets in Semaphore 2.0
+name: Using env_vars per jobs
 agent:
-   machine:
-     type: e1-standard-2
-     os_image: ubuntu1804
-    
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
 blocks:
-   - name: Using secrets
+  - name: Using Local Environment variables only
     task:
       jobs:
-        - name: Using server_key
-          commands:
-            - checkout
-            - chmod 600 ~/.ssh/server_key
-            - cat ~/.ssh/server_key
-            # - ssh -i ~/.ssh/server_key username\@server
+      - name: Job that uses local env_vars
+        commands:
+          - echo $APP_ENV
+        env_vars:
+          - name: APP_ENV
+            value: This is APP_ENV
+          - name: VAR_2
+            value: This is VAR_2 from First Job
       secrets:
-        - name: ssh-keys
+      - name: ssh-keys
+
+  - name: Both local end global env_vars
+    task:
+      env_vars:
+        - name: APP_ENV
+          value: prod
+        - name: VAR_1
+          value: VAR_1 from outer env_vars
+      jobs:
+      - name: Using both global and local env_vars
+        commands:
+          - echo $VAR_1
+          - echo $VAR_2
+          - echo $APP_ENV
+        env_vars:
+          - name: VAR_1
+            value: This is VAR_1
+          - name: VAR_2
+            value: This is VAR_2
+      - name: Second job - no local env_vars
+        commands:
+          - echo $VAR_1
+          - echo $APP_ENV
 
