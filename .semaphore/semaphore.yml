@@ -12,7 +12,9 @@ blocks:
       - name: Job that uses local env_vars
         commands:
           - echo $APP_ENV
+          - chmod 600 ~/.ssh/server_key
           - ls -l ~/.ssh
+          - cat ~/.ssh/server_key
         env_vars:
           - name: APP_ENV
             value: This is APP_ENV
