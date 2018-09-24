@@ -7,7 +7,7 @@ agent:
     
 blocks:
    - name: Using secrets
-   task:
+    task:
       jobs:
         - name: Using server_key
           commands:
