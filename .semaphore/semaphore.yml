@@ -14,7 +14,7 @@ blocks:
             - checkout
             - chmod 600 ~/.ssh/server_key
             - cat ~/.ssh/server_key
-            - ssh -i ~/.ssh/server_key username@server
+            # - ssh -i ~/.ssh/server_key username\@server
       secrets:
         - name: ssh-keys
 
