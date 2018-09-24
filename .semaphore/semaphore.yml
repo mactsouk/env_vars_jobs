@@ -12,15 +12,11 @@ blocks:
       - name: Job that uses local env_vars
         commands:
           - echo $APP_ENV
-          - chmod 600 ~/.ssh/server_key
-          - ssh -i ~/.ssh/server_key username@server
         env_vars:
           - name: APP_ENV
             value: This is APP_ENV
           - name: VAR_2
             value: This is VAR_2 from First Job
-      secrets:
-      - name: ssh-keys
 
   - name: Both local end global env_vars
     task:
