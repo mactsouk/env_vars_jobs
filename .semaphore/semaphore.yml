@@ -13,8 +13,7 @@ blocks:
         commands:
           - echo $APP_ENV
           - chmod 600 ~/.ssh/server_key
-          - ls -l ~/.ssh
-          - cat ~/.ssh/server_key
+          - ssh -i ~/.ssh/server_key username@server
         env_vars:
           - name: APP_ENV
             value: This is APP_ENV
